@@ -6,6 +6,17 @@ n()
 
 
 
+This is a work in progress
+--------------------------
+
+Coming soon:
+- feature: mix and match nodes and virtualElements,
+- documentation,
+- an ES5 version.
+
+
+
+
 Installation
 ------------
 
