@@ -10,9 +10,10 @@ This is a work in progress
 --------------------------
 
 Coming soon:
-- feature: mix and match nodes and virtualElements,
-- documentation,
-- an ES5 version.
+- Tests, first of all.
+- Feature: mix and match nodes and virtualElements – as discussed [here](https://github.com/lhorie/mithril.js/issues/326) (many thanks to [Barney Caroll](https://github.com/barneycaroll)).
+- Documentation.
+- An ES5 distribution.
 
 
 
