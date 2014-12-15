@@ -16,4 +16,8 @@
   { "type": "git"
   , "url": "https://github.com/tomekwi/n.git"
   }
+
+, "dependencies":
+  { "mithril": "0.1.x"
+  }
 }
