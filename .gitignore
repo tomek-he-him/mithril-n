@@ -6,6 +6,7 @@
 
 # - Automatically installed dependencies,
 node_modules/
+bower_components/
 
 # - Editor files.
 *.sublime-project
