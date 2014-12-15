@@ -1,0 +1,19 @@
+{ "name": "mithril-n"
+, "version": "0.0.0"
+, "description": "Pure DOM nodes in Mithril templates."
+, "license": "MIT"
+
+, "authors":
+  [ { "name": "Tomek Wiszniewski"
+    , "email": "t.wiszniewski@gmail.com"
+    }
+  , { "name": "Barney Caroll"
+    , "email": "barney.carroll@gmail.com"
+    }
+  ]
+
+, "repository":
+  { "type": "git"
+  , "url": "https://github.com/tomekwi/n.git"
+  }
+}
