@@ -1,7 +1,10 @@
-{ "strict": true
-, "node": true
+{ "browser": true
+
 , "laxbreak": true
 , "laxcomma": true
+
 , "undef": true
 , "unused": true
+
+, "esnext": true
 }
