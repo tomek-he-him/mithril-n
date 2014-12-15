@@ -17,6 +17,13 @@
   , "url": "https://github.com/tomekwi/n.git"
   }
 
+, "main": "dist/n.js"
+, "ignore":
+  [ ".gitignore"
+  , ".jshintrc"
+  , ".editorconfig"
+  ]
+
 , "dependencies":
   { "mithril": "0.1.x"
   }
