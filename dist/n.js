@@ -29,7 +29,7 @@ export default function n( ...input ){
     if( dom.length > 0 ){
         view.attrs.config = ( el, init, context ) => {
             if( !init ){
-                for ( node of dom ){
+                for ( let node of dom ){
                     // Use next vdom element in child list as reference for insertion
                     let next  = kids.slice( kids.indexOf( node ) ).find( notDom );
                     // Allows modified documentFragments to keep their references between destructive redraws;
