@@ -21,7 +21,7 @@ export default function n( ...input ){
 
     // Divide children between dom & vdom
     if( Array.isArray( kids ) ){
-        for ( x of kids ){
+        for ( let x of kids ){
             ( isDom( x ) ? dom : vdom ).push( x );
         }
     }
@@ -35,7 +35,9 @@ export default function n( ...input ){
                     // Allows modified documentFragments to keep their references between destructive redraws;
                     let clone = node.cloneNode( true );
 
-                    el.insertBefore( clone, el.childNodes[ vdom.indexOf( next ) ] || null );
+                    if( next ){
+                        el.insertBefore( clone, el.childNodes[ vdom.indexOf( next ) ] );
+                    }
                 }
             }
 
