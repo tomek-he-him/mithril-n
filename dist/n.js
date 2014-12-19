@@ -35,12 +35,7 @@ export default function n( ...input ){
                     // Allows modified documentFragments to keep their references between destructive redraws;
                     let clone = node.cloneNode( true );
 
-                    if( next ){
-                        el.insertBefore( clone, el.childNodes[ vdom.indexOf( next ) ] );
-                    }
-                    else {
-                        el.appendChild( clone );
-                    }
+                    el.insertBefore( clone, el.childNodes[ vdom.indexOf( next ) ] || null );
                 }
             }
 
