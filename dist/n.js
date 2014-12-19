@@ -30,24 +30,26 @@ export default function n( ...input ){
         view.attrs.config = ( el, init, context ) => {
             if( !init ){
                 dom.map( dom, ( node, index ) => {
-                    let next  = kids.slice( kids.indexOf( node ) ).find( notDom );
-                    let nodes;
+                    let next     = kids.slice( kids.indexOf( node ) ).find( notDom );
+                    let location = el.childNodes[ vdom.indexOf( next ) ] || null;
 
-                    if( node instanceof Array ){
-                        node = node;
-                    }
-                    if( node.nodeType === node.DOCUMENT_FRAGMENT_NODE ){
-                        node = Array.from( node.childNodes );
-                    }
-                    else {
-                        node = [ node ];
-                    }
+                    void function insertNode( node ){
+                        if( node instanceof Array ){
+                            node = node;
+                        }
+                        else if( node.nodeType === node.DOCUMENT_FRAGMENT_NODE ){
+                            node = Array.from( node.childNodes );
+                        }
+                        else {
+                            return el.insertBefore( node, location );
+                        }
 
-                    dom[ index ] = node;
+                        dom[ index ] = node;
 
-                    for( let subNode of nodes ){
-                        el.insertBefore( subNode, el.childNodes[ vdom.indexOf( next ) ] || null );
-                    }
+                        for( let subNode of node ){
+                            insertNode( subNode );
+                        }
+                    }( node );
                 } );
             }
 
