@@ -30,14 +30,9 @@ export default function n( ...input ){
         view.attrs.config = ( el, init, context ) => {
             if( !init ){
                 for ( let node of dom ){
-                    // Use next vdom element in child list as reference for insertion
-                    let next  = kids.slice( kids.indexOf( node ) ).find( notDom );
-                    // Allows modified documentFragments to keep their references between destructive redraws;
-                    let clone = node.cloneNode( true );
+                    let next = kids.slice( kids.indexOf( node ) ).find( notDom );
 
-                    if( next ){
-                        el.insertBefore( clone, el.childNodes[ vdom.indexOf( next ) ] );
-                    }
+                    el.insertBefore( node, el.childNodes[ vdom.indexOf( next ) ] || null );
                 }
             }
 
