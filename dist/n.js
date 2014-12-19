@@ -29,11 +29,26 @@ export default function n( ...input ){
     if( dom.length > 0 ){
         view.attrs.config = ( el, init, context ) => {
             if( !init ){
-                for ( let node of dom ){
-                    let next = kids.slice( kids.indexOf( node ) ).find( notDom );
+                dom.map( dom, ( node, index ) => {
+                    let next  = kids.slice( kids.indexOf( node ) ).find( notDom );
+                    let nodes;
 
-                    el.insertBefore( node, el.childNodes[ vdom.indexOf( next ) ] || null );
-                }
+                    if( node instanceof Array ){
+                        node = node;
+                    }
+                    if( node.nodeType === node.DOCUMENT_FRAGMENT_NODE ){
+                        node = Array.from( node.childNodes );
+                    }
+                    else {
+                        node = [ node ];
+                    }
+
+                    dom[ index ] = node;
+
+                    for( let subNode of nodes ){
+                        el.insertBefore( subNode, el.childNodes[ vdom.indexOf( next ) ] || null );
+                    }
+                } );
             }
 
             if( cfg ){
