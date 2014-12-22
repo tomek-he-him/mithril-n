@@ -1,6 +1,10 @@
 # Files ignored by Git
 # ====================
 
+# - Built files,
+/dist/
+/dist.es5/
+
 # - All files and directories starting with "#",
 \#*
 
