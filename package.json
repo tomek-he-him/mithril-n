@@ -17,6 +17,7 @@
   , "url": "https://github.com/tomekwi/mithril-n.git"
   }
 
+, "main": "dist.es5/n.js"
 , "dependencies":
   { "mithril": "0.1.x"
   }
