@@ -7,7 +7,7 @@
   [ { "name": "Tomek Wiszniewski"
     , "email": "t.wiszniewski@gmail.com"
     }
-  , { "name": "Barney Caroll"
+  , { "name": "Barney Carroll"
     , "email": "barney.carroll@gmail.com"
     }
   ]
@@ -17,7 +17,13 @@
   , "url": "https://github.com/tomekwi/mithril-n.git"
   }
 
+, "main": "dist.es5/n.js"
 , "dependencies":
   { "mithril": "0.1.x"
+  }
+, "devDependencies":
+  { "6-to-library": "0.2.0"
+  , "gulp": "3.8.10"
+  , "gulp-6to5": "2.0.0"
   }
 }
