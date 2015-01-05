@@ -34,7 +34,7 @@ gulp.task('scripts:es6', function () {
 
 gulp.task('scripts:es5', function () {
     return gulp.src('source/n.js')
-        .pipe(to5({modules: 'umd'}))
+        .pipe(to5({modules: '6-to-library'}))
         .pipe(gulp.dest('dist.es5'))
         ;
 });
