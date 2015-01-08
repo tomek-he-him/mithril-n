@@ -1,7 +1,9 @@
 n()
 ===
 
-**Pure DOM nodes in Mithril templates.**
+**Pure DOM nodes in [Mithril][] templates.**
+
+[Mithril]: http://lhorie.github.io/mithril/
 
 
 
