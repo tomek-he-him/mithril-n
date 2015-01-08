@@ -17,6 +17,9 @@
   , "url": "https://github.com/tomekwi/mithril-n.git"
   }
 
+, "scripts":
+  { "prepublish": "gulp build"
+  }
 , "main": "dist.es5/n.js"
 , "dependencies":
   { "mithril": "0.1.x"
