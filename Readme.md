@@ -6,16 +6,9 @@ n()
 [Mithril]: http://lhorie.github.io/mithril/
 
 
-
-
-This is a work in progress
---------------------------
-
-Coming soon:
-- Tests, first of all.
-- Feature: mix and match nodes and virtualElements – as discussed [here](https://github.com/lhorie/mithril.js/issues/326) (many thanks to [Barney Carroll](https://github.com/barneycarroll)).
-- Documentation.
-- An ES5 distribution.
+__This is a work in progress.__ Coming soon:
+- tests,
+- documentation.
 
 
 
