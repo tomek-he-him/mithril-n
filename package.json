@@ -25,7 +25,7 @@
   { "mithril": "0.1.x"
   }
 , "devDependencies":
-  { "6-to-library": "0.3.0"
+  { "6-to-library": "0.3.3"
   , "gulp": "3.8.10"
   , "gulp-6to5": "2.0.0"
   }
