@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '0.10'
+deploy:
+  provider: npm
+  email: t.wiszniewski@gmail.com
+  api_key:
+    secure: FeAuMiUHX6oWGC/EgJ1gmdKQSMBUvY+9VIENY7e9SJI0A1E8NijFK91coYnygeigrvYh5e0qKoy34tPqoHW7CbI/ZRBM+K1slDq27Osva/0F8DGqWSWNx7xJG4iKbUZsqLJIGtncmkGrnzjtq6H0WmfNPiqQwkC7GgXalHpWA2Y=
+  on:
+    tags: true
+    all_branches: true
+    repo: tomekwi/mithril-n
