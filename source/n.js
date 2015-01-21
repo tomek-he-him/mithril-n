@@ -1,60 +1,32 @@
 import m from 'mithril';
 
-var isDom = function isDom (element) {
-    return element.nodeType > 0;
-    };
+export default function n( ...args ){
+	var view = m( ...args );
+	var cfg  = view.attrs.config;
+	var kids = [];
 
-var notDom = function notDom (x) {
-    return !isDom(x);
-    };
+	( function recurse( x ){
+		return x instanceof Array ? x.map( recurse ) : kids.push( x );
+	}( view.children ) );
 
-export default function n (...args) {
-    // Wrap any DOM arguments in an array:
-    // Avoids Mithril parsing DOM as vdom attrs and makes our logic simpler.
-    var view = m(...args.map(arg => isDom(arg) ? [arg] : arg));
+	var dom  = [];
+	var vdom = [];
 
-    var config = view.attrs.config;
-    var kids = view.children;
+	for ( let x of kids )
+		( typeof x === 'string' || 'attrs' in x ? vdom : dom ).push( x );
+	} );
 
-    var dom = [];
-    var vdom = [];
+	if( dom.length ){
+		view.attrs.config = function appendDom( el, ...rest ){
+			for ( let node of dom ){
+				el.insertBefore( node, el.childNodes[ kids.indexOf( node ) ] || null );
+			}
 
-    // Divide children between dom & vdom
-    if (Array.isArray(kids)) for (let kid of kids) {
-        (isDom(kid) ? dom : vdom).push(kid);
-        }
+			return cfg && cfg( el, ...rest );
+		};
 
-    if (dom.length) {
-        view.attrs.config = function injectNodes (element, initialized, context) {
-            if (!initialized) dom.map(dom, (node, index) => {
-                var next = kids.slice(kids.indexOf(node)).find(notDom);
-                var location = element.childNodes[vdom.indexOf(next)] || null;
+		view.children = vdom;
+	}
 
-                (function injectNode (node) {
-                    if (node instanceof Array) {
-                        node = node;
-                        }
-                    else if (node.nodeType === node.DOCUMENT_FRAGMENT_NODE) {
-                        node = Array.from(node.childNodes);
-                        }
-                    else {
-                        return element.insertBefore(node, location);
-                        }
-
-                    dom[index] = node;
-
-                    for (let subNode of node){
-                        injectNode(subNode);
-                        }
-                    })(node);
-                });
-
-            if (config instanceof Function) return config(element, initialized, context);
-            };
-
-        // Make sure only the virtual elements are parsed by m.render.
-        view.children = vdom;
-        }
-
-    return view;
-    };
+	return view;
+}
