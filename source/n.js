@@ -1,4 +1,6 @@
-function n( ...args ){
+import m from 'mithril';
+
+export default function n( ...args ){
 	var view = m( ...args );
 	var cfg  = view.attrs.config;
 	var kids = [];
