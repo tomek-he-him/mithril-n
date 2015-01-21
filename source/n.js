@@ -1,6 +1,4 @@
-import m from 'mithril';
-
-export default function n( ...args ){
+function n( ...args ){
 	var view = m( ...args );
 	var cfg  = view.attrs.config;
 	var kids = [];
@@ -13,13 +11,15 @@ export default function n( ...args ){
 	var vdom = [];
 
 	for ( let x of kids )
-		( typeof x === 'string' || 'attrs' in x ? vdom : dom ).push( x );
+		( x.nodeType ? dom : vdom ).push( x );
 	} );
 
 	if( dom.length ){
 		view.attrs.config = function appendDom( el, ...rest ){
 			for ( let node of dom ){
-				el.insertBefore( node, el.childNodes[ kids.indexOf( node ) ] || null );
+				if( !node.isEqualNode( pos ) ){
+					el.insertBefore( node, el.childNodes[ kids.indexOf( node ) ] || null );
+				}
 			}
 
 			return cfg && cfg( el, ...rest );
