@@ -17,7 +17,7 @@
   , "url": "https://github.com/tomekwi/mithril-n.git"
   }
 
-, "main": "dist/n.js"
+, "main": "dist.es5/n.js"
 , "ignore":
   [ ".gitignore"
   , ".jshintrc"
