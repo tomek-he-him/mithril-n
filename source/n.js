@@ -12,9 +12,9 @@ export default function n( ...args ){
 	var dom  = [];
 	var vdom = [];
 
-	for ( let x of kids )
-		( x.nodeType ? dom : vdom ).push( x );
-	} );
+	for (let x of kids) {
+		(x.nodeType ? dom : vdom).push(x);
+    	}
 
 	if( dom.length ){
 		view.attrs.config = function appendDom( el, ...rest ){
