@@ -1,3 +1,5 @@
+import "6to5/polyfill";
+
 import test from "tape-catch";
 
 import n from "../source/n";
