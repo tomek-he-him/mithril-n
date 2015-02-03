@@ -27,7 +27,18 @@ test("Doesn't break Mithril", function (is) {
         );
     is.true
         ( changed
-        , "Doesn't break an existing config attribute."
+        , "Doesn't break an existing config attribute,"
+        );
+
+    var changedAgain = false;
+    m.render(document.body,
+        n(".somethingElse", {config: function () { changedAgain = true; }},
+            document.createElement("div")
+            )
+        );
+    is.true
+        ( changedAgain
+        , "even when rendering a node."
         );
 
     is.end();
