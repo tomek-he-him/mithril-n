@@ -19,9 +19,7 @@ export default function n( ...args ){
 	if( dom.length ){
 		view.attrs.config = function appendDom( el, ...rest ){
 			for ( let node of dom ){
-				if( !node.isEqualNode( pos ) ){
-					el.insertBefore( node, el.childNodes[ kids.indexOf( node ) ] || null );
-				}
+				el.insertBefore( node, el.childNodes[ kids.indexOf( node ) ] || null );
 			}
 
 			return cfg && cfg( el, ...rest );
