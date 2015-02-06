@@ -202,7 +202,8 @@ test("Accepts different types of syntax", (is) => {
     );
   var vOtherSon = m(".other-son", {config: (element) => {otherSon = element;}});
   var children =
-    [ [baby, [daughter, otherDaughter]]
+    [ baby
+    , [daughter, [otherDaughter]]
     , [vOtherSon, son]
     ];
 
