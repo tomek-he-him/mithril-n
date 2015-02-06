@@ -19,7 +19,8 @@
 
 , "scripts":
   { "prepublish": "gulp build"
-  , "test": "browserify test/*.js --transform 6to5ify | tape-run"
+  , "test": "browserify test/index.js --transform 6to5ify | tape-run --browser=phantom | tap-spec"
+  , "test-debug": "echo 'Now navigate your browser to http://localhost:8001/ to run the tests – and see their results in the console.' && browserify test/index.js --debug --transform 6to5ify | tape-run --port=8001"
   }
 , "main": "dist.es5/n.js"
 , "dependencies":
@@ -33,6 +34,8 @@
   , "browserify": "8.1.3"
   , "6to5ify": "4.0.0"
   , "tape-run": "0.3.0"
-  , "tape": "3.5.0"
+  , "tape-catch": "1.0.4"
+  , "6to5": "3.3.7"
+  , "tap-spec": "2.2.0"
   }
 }

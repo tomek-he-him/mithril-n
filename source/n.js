@@ -15,16 +15,14 @@ export default function n (...args) {
   var dom = [];
   var vdom = [];
 
-  for (let x of kids) {
-    (x.nodeType ? dom : vdom).push(x);
+  for (let x of kids) if (typeof x == "object" && x !== null || typeof x == "string") {
+    (x instanceof Node ? dom : vdom).push(x);
     }
 
   if (dom.length) {
     view.attrs.config = function appendDom (el, ...rest) {
       for (let node of dom) {
-        if (!node.isEqualNode(pos)) {
-          el.insertBefore(node, el.childNodes[kids.indexOf(node)] || null);
-          }
+        el.insertBefore(node, el.childNodes[kids.indexOf(node)] || null);
         }
 
       return cfg && cfg(el, ...rest);
