@@ -2,7 +2,7 @@ import m from 'mithril';
 
 export default function n (...args) {
   var view = m(...args);
-  var cfg = view.attrs.config;
+  var config = view.attrs.config;
 
   // Divide `view.children` between DOM and vDOM. Save all in kids.
   var kids = [];
@@ -24,12 +24,14 @@ export default function n (...args) {
     });
 
   if (dom.length) {
-    view.attrs.config = function appendDom (el, ...rest) {
+    view.attrs.config = function appendDOM (element, ...rest) {
       for (let node of dom) {
-        el.insertBefore(node, el.childNodes[kids.indexOf(node)] || null);
+        element.insertBefore(node,
+          element.childNodes[kids.indexOf(node)] || null
+          );
         }
 
-      return cfg && cfg(el, ...rest);
+      return config && config(element, ...rest);
       };
 
     view.children = vdom;
