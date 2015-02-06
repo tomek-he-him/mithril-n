@@ -6,6 +6,14 @@ import m from "mithril";
 import n from "../source/n";
 
 
+var flush = function flush (target) {
+  var childNode;
+  while ((childNode = target.lastChild)) {
+    target.removeChild(childNode);
+    }
+  };
+
+
 test("Doesn't break Mithril", function (is) {
   var noop = function () {};
 
@@ -42,14 +50,55 @@ test("Doesn't break Mithril", function (is) {
     , "even when rendering a node."
     );
 
+  flush(document.body);
   is.end();
   });
 
 
-test.skip("Renders real nodes", function (is) {
+test("Renders a real child node", function (is) {
+  var grandpa, son, daughter;
+  var pa = document.createElement("div");
+  pa.setAttribute("some-attr", "and its value");
+  pa.appendChild(son = document.createElement("span"));
+  pa.appendChild(daughter = document.createTextNode("I'm the daughter"));
+
+  m.render
+    ( document.body
+    , n
+      ( "article"
+      , {config: function (element) {
+        grandpa = element;
+        }}
+      , pa
+      )
+    );
+
+  is.equal
+    ( pa.parentNode, grandpa
+    , "Renders a child node"
+    );
+
+  is.equal
+    ( pa.getAttribute("some-attr"), "and its value"
+    , "keeping attributes"
+    );
+
+  is.true
+    (  pa.firstChild == son
+    && son.nextSibling == daughter
+    , "and the node's subtree."
+    );
+
+  flush(document.body);
+  is.end();
+});
+
+
+test.skip("Renders a bunch of real nodes", function (is) {
   is.pass("Renders a bunch of child nodes mixed with virtual nodes");
   is.pass("in the correct order");
-  is.pass("without breaking references.");
+  is.pass("without breaking references");
+  is.pass("and persists them across redraws.");
   is.pass("Even when called more than once in a single view.");
   is.end();
   });
