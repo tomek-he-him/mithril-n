@@ -15,8 +15,8 @@ export default function n (...args) {
   var dom = [];
   var vdom = [];
 
-  for (let x of kids) {
-    (x.nodeType ? dom : vdom).push(x);
+  for (let x of kids) if (typeof x == "object" && x !== null || typeof x == "string") {
+    (x instanceof Node ? dom : vdom).push(x);
     }
 
   if (dom.length) {
