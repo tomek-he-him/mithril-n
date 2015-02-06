@@ -6,24 +6,21 @@ n()
 [Mithril]: http://lhorie.github.io/mithril/
 
 
-__This is a work in progress.__ Coming soon:
-- tests,
-- documentation.
-
-
 
 
 Installation
 ------------
 
 Using bower:
+
 ```sh
-> bower install mithril-n
+$ bower install mithril-n
 ```
 
 Using npm:
+
 ```sh
-> npm install mithril-n
+$ npm install mithril-n
 ```
 
 
@@ -32,15 +29,43 @@ Using npm:
 Usage
 -----
 
-_Work in progress…_
+It's really just Mithril's `m()`, which accepts DOM nodes as `children` as well as original arguments.
 
+So this JavaScript*:
 
+```js
+import m from "mithril";
+import n from "mithril-n";
 
+var pa = document.createElement("div");
+pa.className = "pa";
 
-API
----
+var view = n
+  ( ".home"
+  , {config: (element) => {console.log(element.outerHTML);}}
+  , pa
+  , n(".ma", m(".son"))
+  , "A happy family"
+  );
 
-_Work in progress…_
+m.render(document.body, view);
+```
+
+…will log the following:
+
+```html
+<div class="home">
+  <div class="pa"></div>
+  <div class="ma">
+    <div class="son"></div>
+    </div>
+  A happy family
+  </div>
+```
+
+(*) I'm using ES6 syntax here – brought to us today by great projects like [6to5]. When you download a release of _mithril-n_, you get two versions bundled: one for ES6, one for ES5 (available as CommonJS, RequireJS and as a global variable).
+
+[6to5]: http://6to5.org
 
 
 
@@ -50,9 +75,5 @@ License
 
 [MIT][] © [Tomek Wiszniewski][].
 
-
-
-
-<!-- Links -->
 [MIT]: ./License.md
 [Tomek Wiszniewski]: https://github.com/tomekwi
