@@ -1,41 +1,39 @@
-/*jshint node: true, globalstrict: true */
-'use strict';
+/*jshint node: true, globalstrict: true, esnext: false */
+"use strict";
 
 
 // Imports
-// -------------------------------------------------------------------------------------------------
+// -------
 
-var gulp = require('gulp');
-var to5 = require('gulp-6to5');
-
-
-
-
-// Tasks
-// =================================================================================================
+var gulp = require("gulp");
+var to5 = require("gulp-6to5");
 
 
 // `gulp build` or `gulp`
-// -------------------------------------------------------------------------------------------------
+// ----------------------
 
-gulp.task('default', ['build']);
-gulp.task('build', ['scripts']);
+gulp.task("default", ["build"]);
+gulp.task("build", ["scripts"]);
 
 
 // `gulp scripts`
-// -------------------------------------------------------------------------------------------------
+// --------------
 
-gulp.task('scripts', ['scripts:es6', 'scripts:es5']);
+var source = "source/n.js";
 
-gulp.task('scripts:es6', function () {
-    return gulp.src('source/**/*.js')
-        .pipe(gulp.dest('dist'))
-        ;
-});
+gulp.task("scripts", ["scripts:es6", "scripts:es5"]);
 
-gulp.task('scripts:es5', function () {
-    return gulp.src('source/n.js')
-        .pipe(to5({modules: '6-to-library'}))
-        .pipe(gulp.dest('dist.es5'))
-        ;
-});
+gulp.task("scripts:es6", function () {
+  return gulp
+    .src(source)
+    .pipe(gulp.dest("dist"))
+    ;
+  });
+
+gulp.task("scripts:es5", function () {
+  return gulp
+    .src(source)
+    .pipe(to5({modules: "6-to-library"}))
+    .pipe(gulp.dest("dist.es5"))
+    ;
+  });
