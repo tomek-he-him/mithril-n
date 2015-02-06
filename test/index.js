@@ -193,3 +193,58 @@ test("Renders a bunch of child nodes", (is) => {
   flush(testContainer);
   is.end();
   });
+
+
+test("Accepts different types of syntax", (is) => {
+  var otherSon;
+  var [daughter, otherDaughter, son, baby] = Array(4).fill(null).map(
+    () => document.createElement("div")
+    );
+  var vOtherSon = m(".other-son", {config: (element) => {otherSon = element;}});
+  var children =
+    [ [baby, [daughter, otherDaughter]]
+    , [vOtherSon, son]
+    ];
+
+  function testPa (message) {
+    return (pa) => {
+      is.equal
+        ( pa && pa.childNodes.length
+        , 5
+        , message + " (has all nodes)"
+        );
+      is.ok
+        (  pa.firstChild == baby
+        && baby.nextSibling == daughter
+        && daughter.nextSibling == otherDaughter
+        && otherDaughter.nextSibling == otherSon
+        && otherSon.nextSibling == son
+        && pa.lastChild == son
+        , message + " (has them in the right order)"
+        );
+      };
+    }
+
+  m.render(testContainer, n(".pa"
+    , {config: testPa("array syntax")}
+    , children
+    ));
+
+  m.render(testContainer, n(".pa"
+    , {config: testPa("non-array syntax")}
+    , baby, daughter, otherDaughter, vOtherSon, son
+    ));
+
+  m.render(testContainer, n(".pa"
+    , {config: testPa("mixed syntax")}
+    , ...children
+    ));
+
+  m.render(testContainer, n(".pa"
+    , {config: testPa("ignoring invalid children values")}
+    , children.concat([undefined, 1, null])
+    ));
+
+  flush(testContainer);
+  is.end();
+  });
