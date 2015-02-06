@@ -10,9 +10,6 @@ export default function n () {
   var dom = [];
   var vdom = [];
   view.children.forEach(function recurse (kid) {
-    // - get rid of invalid values
-    if (!(kid instanceof Object || typeof kid == "string")) return;
-
     // - push the child where it belongs, if it's not an array
     if (!(kid instanceof Array)) {
       kids.push(kid);

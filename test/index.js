@@ -28,9 +28,9 @@ test("Does the same as Mithril", (is) => {
     );
 
   is.deepEqual
-    ( m("div", {an: "attribute", onclick: noop}, m("a"), [m(".b"), m("#c")])
-    , n("div", {an: "attribute", onclick: noop}, m("a"), [m(".b"), m("#c")])
-    , "even when the vnode has vchildren"
+    ( m("div", {an: "attribute", onclick: noop}, m("a"), [m(".b"), m("#c")], null, undefined, "d", 5)
+    , n("div", {an: "attribute", onclick: noop}, m("a"), [m(".b"), m("#c")], null, undefined, "d", 5)
+    , "even when the vnode has children of different types"
     );
 
   m.render(testContainer, n
@@ -239,11 +239,6 @@ test("Accepts different types of syntax", (is) => {
   m.render(testContainer, n(".pa"
     , {config: testPa("mixed syntax")}
     , ...children
-    ));
-
-  m.render(testContainer, n(".pa"
-    , {config: testPa("ignoring invalid children values")}
-    , children.concat([undefined, 1, null])
     ));
 
   flush(testContainer);
