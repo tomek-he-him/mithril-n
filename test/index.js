@@ -30,13 +30,13 @@ test("Does the same as Mithril", (is) => {
   is.deepEqual
     ( m("div", {an: "attribute", onclick: noop}, m("a"), [m(".b"), m("#c")])
     , n("div", {an: "attribute", onclick: noop}, m("a"), [m(".b"), m("#c")])
-    , "even when the vnode has children"
+    , "even when the vnode has vchildren"
     );
 
   m.render(testContainer, n
     ( ".something"
     , {config: () => {
-      is.pass("keeping an existing config attribute when tha vnode has no children");
+      is.pass("keeping an existing config attribute when the vnode has no children,");
       }}
     ));
 
@@ -54,18 +54,16 @@ test("Does the same as Mithril", (is) => {
   });
 
 
-test("Renders a real child node", (is) => {
-  var grandpa, daughter, pa, son;
-
-  (pa = document.createElement("div"))
-    .setAttribute("some-attr", "some value")
-    ;
-  pa.appendChild(
-    (son = document.createElement("span"))
+test("Renders a child node", (is) => {
+  var grandpa;
+  var [pa, daughter, son] = Array(3).fill(null).map(
+    () => document.createElement("div")
     );
-  pa.appendChild(
-    (daughter = document.createTextNode("me is the daughter"))
-    );
+  var baby = document.createTextNode("balbablaba ballablabla ba blbbla");
+  pa.setAttribute("some-attr", "some value");
+  pa.appendChild(son);
+  pa.appendChild(daughter);
+  pa.appendChild(baby);
 
   m.render
     ( testContainer
@@ -76,23 +74,25 @@ test("Renders a real child node", (is) => {
       , pa
       )
     );
-
   is.equal
     ( pa && pa.parentNode
     , grandpa
     , "in the parent vnode"
     );
-
   is.equal
     ( pa.getAttribute("some-attr")
     , "some value"
     , "keeping attributes and their values"
     );
-
   is.ok
     (  pa.firstChild == son
     && son.nextSibling == daughter
     ,  "and the node's subtree"
+    );
+  is.ok
+    (  daughter.nextSibling == baby
+    && pa.lastChild == baby
+    ,  "including text nodes"
     );
 
   flush(testContainer);
@@ -100,7 +100,7 @@ test("Renders a real child node", (is) => {
 });
 
 
-test("Renders a bunch of real nodes", (is) => {
+test("Renders a bunch of child nodes", (is) => {
   var aunt, grandpa;
   var [ma, pa, uncle] = Array(3).fill(null).map(
     () => document.createElement("div")
@@ -110,32 +110,30 @@ test("Renders a bunch of real nodes", (is) => {
     , n(".grandpa"
       , {config: (element) => {grandpa = element;}}
       , ma
-      , m(".aunt", {config: (element) => {aunt = element;}})
+      , m(".aunt", { config: (element) => {aunt = element;}
+                   , key: "aunt"
+                   })
       , uncle
       , pa
       )
     );
-
   is.equal
     ( grandpa && grandpa.parentNode
     , testContainer
     , "just where told to render"
     );
-
   is.ok
     ( [ma, pa, uncle].every((element) =>
       element && element.parentNode == grandpa
       )
     , "in the parent node"
     );
-
   is.equal
     ( aunt && aunt.parentNode
     , grandpa
     , "alongside virtual nodes"
     );
-
-  is.true
+  is.ok
     ( [ma, aunt, uncle, pa].every((element, index, elements) =>
       (  index === 0
       || element.previousSibling == elements[index - 1]
@@ -143,20 +141,55 @@ test("Renders a bunch of real nodes", (is) => {
     , "in the correct order"
     );
 
-  is.skip("without breaking references");
-  is.skip("persistently across redraws");
-  is.skip("even when changing the order");
-  is.skip("and keeping references to keyed vnodes");
-  is.skip("even when called more than once in a single view");
+
+  var [oldUncle, oldAunt, oldPa] = [uncle, aunt, pa];
+  m.render(testContainer
+    , n(".other-grandpa"
+      , {key: "other-grandpa"}
+      , uncle
+      , m(".aunt", { config: (element) => {aunt = element;}
+                   , key: "aunt"
+                   })
+      )
+    );
+  is.notEqual
+    ( uncle.parentNode
+    , grandpa
+    , "moving nodes when needed instead of cloning them"
+    );
+  is.equal
+    ( uncle
+    , oldUncle
+    , "without breaking references across redraws"
+    );
+  is.equal
+    ( aunt
+    , oldAunt
+    , "and keeping references to keyed vnodes"
+    );
+
+
+  m.render(testContainer
+    , n(".other-grandpa"
+      , {key: "other-grandpa"}
+      , m(".aunt", { config: (element) => {aunt = element;}
+                   , key: "aunt"
+                   })
+      , uncle
+      , n("", pa)
+      )
+    );
+  is.equal
+    ( uncle
+    , oldUncle
+    , "even when changing the order"
+    );
+  is.equal
+    ( pa
+    , oldPa
+    , "even when called more than once in a single view"
+    );
 
   flush(testContainer);
-  is.end();
-  });
-
-
-test("Updates real nodes", (is) => {
-  is.skip("Reacts to updates on the parent vnode,");
-  is.skip("or on virtual children,");
-  is.skip("still keeping node references.");
   is.end();
   });
