@@ -20,7 +20,7 @@
 , "scripts":
   { "prepublish": "gulp build"
   , "test": "browserify test/index.js --transform 6to5ify | tape-run --browser=phantom | tap-spec"
-  , "test-with-sourcemaps": "browserify test/index.js --debug --transform 6to5ify | tape-run --browser=chromium | tap-spec"
+  , "test-debug": "echo 'Now navigate your browser to http://localhost:8001/ to run the tests – and see their results in the console.' && browserify test/index.js --debug --transform 6to5ify | tape-run --port=8001"
   }
 , "main": "dist.es5/n.js"
 , "dependencies":
