@@ -1,3 +1,10 @@
+ [![Build status](https://img.shields.io/badge/local%20build-passing-brightgreen.svg?style=flat-square)](#testing)
+ [![Code climate](https://img.shields.io/codeclimate/github/tomekwi/mithril-n.svg?style=flat-square)](https://codeclimate.com/github/tomekwi/mithril-n)
+ [![David](https://img.shields.io/david/tomekwi/mithril-n.svg?style=flat-square)](https://david-dm.org/tomekwi/mithril-n)
+
+
+
+
 n()
 ===
 
