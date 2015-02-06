@@ -1,5 +1,5 @@
 { "name": "mithril-n"
-, "version": "0.0.4"
+, "version": "1.0.0-beta"
 , "description": "Pure DOM nodes in Mithril templates."
 , "license": "MIT"
 
