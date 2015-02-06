@@ -7,6 +7,8 @@
 
 var gulp = require("gulp");
 var to5 = require("gulp-6to5");
+var uglify = require("gulp-uglify");
+var rename = require("gulp-rename");
 
 
 // `gulp build` or `gulp`
@@ -34,6 +36,9 @@ gulp.task("scripts:es5", function () {
   return gulp
     .src(source)
     .pipe(to5({modules: "6-to-library"}))
+    .pipe(gulp.dest("dist.es5"))
+    .pipe(uglify())
+    .pipe(rename({extname: ".min.js"}))
     .pipe(gulp.dest("dist.es5"))
     ;
   });
