@@ -138,6 +138,18 @@ All tests pass!
 
 
 
+Contributors
+------------
+
+Many thanks to this fine gentleman for his invaluable input:
+
+- [Barney Carroll]
+
+[Barney Carroll]: https://github.com/barneycarroll
+
+
+
+
 License
 -------
 
