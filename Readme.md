@@ -38,7 +38,7 @@ Usage
 
 It's really just Mithril's `m()`, which accepts DOM nodes as `children` as well as original arguments.
 
-So this JavaScript*:
+So this JavaScript[*](#es6-note):
 
 ```js
 import m from "mithril";
@@ -70,7 +70,7 @@ m.render(document.body, view);
   </div>
 ```
 
-(*) I'm using ES6 syntax here – brought to us today by great projects like [6to5]. When you download a release of _mithril-n_, you get two versions bundled: one for ES6, one for ES5 (available as CommonJS, RequireJS and as a global variable).
+<span id="es6-note">*</span> I'm using ES6 syntax here – brought to us today by great projects like [6to5]. When you download a release of _mithril-n_, you get two versions bundled: one for ES6, one for ES5 (available as CommonJS, RequireJS and as a global variable).
 
 [6to5]: http://6to5.org
 
