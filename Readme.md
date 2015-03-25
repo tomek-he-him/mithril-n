@@ -44,30 +44,25 @@ So this JavaScript[*](#es6-note):
 import m from "mithril";
 import n from "mithril-n";
 
-var pa = document.createElement("div");
-pa.className = "pa";
-
-var view = n
-  ( ".home"
-  , {config: (element) => {console.log(element.outerHTML);}}
-  , pa
-  , n(".ma", m(".son"))
-  , "A happy family"
+m.render(document.body
+  , n("home"
+    , document.createElement("papa")
+    , n("mama", m(".son"))
+    , "A happy family"
+    )
   );
-
-m.render(document.body, view);
 ```
 
-…will log the following:
+…will result in:
 
 ```html
-<div class="home">
-  <div class="pa"></div>
-  <div class="ma">
+<home>
+  <papa></papa>
+  <mama>
     <div class="son"></div>
-    </div>
+  </mama>
   A happy family
-  </div>
+</home>
 ```
 
 <a id="es6-note">*</a> I'm using ES6 syntax here – brought to us today by great projects like [6to5]. When you download a release of _mithril-n_, you get two versions bundled: one for ES6, one for ES5 (available as CommonJS, RequireJS and as a global variable).
@@ -82,9 +77,7 @@ Contributors
 
 Many thanks to this fine gentleman for his invaluable input:
 
-- [Barney Carroll]
-
-[Barney Carroll]: https://github.com/barneycarroll
+- [Barney Carroll](https://github.com/barneycarroll)
 
 
 
