@@ -63,9 +63,10 @@ gulp.task("gh-pages"
     try {
       dirty = !!spawnSync("git", ["status", "--porcelain"]).output[1].toString();
       if (dirty) spawnSync("git", ["stash", "save", "--include-untracked"]);
-      spawnSync("git" ["checkout", "gh-pages"]);
-      spawnSync("git" ["checkout", "master", scripts.source]);
-      spawnSync("git" ["reset"]);
+      spawnSync("git", ["checkout", "gh-pages"]);
+      spawnSync("git", ["clean", "-df"]);
+      spawnSync("git", ["checkout", "master", scripts.source]);
+      spawnSync("git", ["reset"]);
       spawnSync("./node_modules/.bin/docco", ["source/**.js"]);
       spawnSync("rm", ["-rf", "source"]);
       spawnSync("mv", ["docs/*", "."]);
