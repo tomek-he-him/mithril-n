@@ -67,7 +67,10 @@ m.render(document.body
 
 <a id="es6-note">*</a> I'm using ES6 syntax here – brought to us today by great projects like [babel]. When you download a release of _mithril-n_, you get two versions bundled: one for ES6, one for ES5 (available as CommonJS, RequireJS and as a global variable).
 
+If you're interested in implementation details, have a look at the [annotated source][docco].
+
 [babel]: http://babel.org
+[docco]: http://tomekwi.github.io/mithril-n/
 
 
 
