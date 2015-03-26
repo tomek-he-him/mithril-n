@@ -17,7 +17,7 @@ var rename = require("gulp-rename");
 // ------------
 
 gulp.task("build"
-  , "Built the lot."
+  , "Build the lot."
   , ["scripts"]
   );
 
