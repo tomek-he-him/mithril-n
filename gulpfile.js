@@ -5,36 +5,43 @@
 // Imports
 // -------
 
-var gulp = require("gulp");
+var gulp = require("gulp-help")(require("gulp"));
 var to5 = require("gulp-6to5");
 var uglify = require("gulp-uglify");
 var rename = require("gulp-rename");
 
 
-// `gulp build` or `gulp`
-// ----------------------
+// `gulp build`
+// ------------
 
-gulp.task("default", ["build"]);
-gulp.task("build", ["scripts"]);
+gulp.task("build"
+  , "Built the lot."
+  , ["scripts"]
+  );
 
 
 // `gulp scripts`
 // --------------
 
-var source = "source/n.js";
+var scripts =
+  { source: "source/n.js"
+  };
 
-gulp.task("scripts", ["scripts:es6", "scripts:es5"]);
+gulp.task("scripts"
+  , "Build ES5 and ES6 dist scripts."
+  , ["scripts:es6", "scripts:es5"]
+  );
 
-gulp.task("scripts:es6", function () {
+gulp.task("scripts:es6", false, function () {
   return gulp
-    .src(source)
+    .src(scripts.source)
     .pipe(gulp.dest("dist"))
     ;
   });
 
-gulp.task("scripts:es5", function () {
+gulp.task("scripts:es5", false, function () {
   return gulp
-    .src(source)
+    .src(scripts.source)
     .pipe(to5({modules: "6-to-library"}))
     .pipe(gulp.dest("dist.es5"))
     .pipe(uglify())
