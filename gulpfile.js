@@ -5,6 +5,8 @@
 // Imports
 // -------
 
+var spawnSync = require("child_process").spawnSync;
+
 var gulp = require("gulp-help")(require("gulp"));
 var to5 = require("gulp-6to5");
 var uglify = require("gulp-uglify");
@@ -49,3 +51,31 @@ gulp.task("scripts:es5", false, function () {
     .pipe(gulp.dest("dist.es5"))
     ;
   });
+
+
+// `gulp gh-pages`
+// ---------=-----
+
+gulp.task("gh-pages"
+  , "Build gh-pages in their branch."
+  , function (done) {
+    var dirty;
+    try {
+      dirty = !!spawnSync("git", ["status", "--porcelain"]).output[1].toString();
+      if (dirty) spawnSync("git", ["stash", "save", "--include-untracked"]);
+      spawnSync("git" ["checkout", "gh-pages"]);
+      spawnSync("git" ["checkout", "master", scripts.source]);
+      spawnSync("git" ["reset"]);
+      spawnSync("./node_modules/.bin/docco", ["source/**.js"]);
+      spawnSync("rm", ["-rf", "source"]);
+      spawnSync("mv", ["docs/*", "."]);
+      spawnSync("mv", ["*.html", "index.html"]);
+      spawnSync("git", ["add", "--all", "."]);
+      spawnSync("git", ["commit", "--message", "Automatic docs update"]);
+      spawnSync("git", ["checkout", "master"]);
+      if (dirty) spawnSync("git", ["stash", "pop"]);
+      }
+    catch (error) {done(error);}
+    done();
+    }
+  );
