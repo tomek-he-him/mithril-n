@@ -3,6 +3,21 @@
 , "description": "Pure DOM nodes in Mithril templates."
 , "license": "MIT"
 
+, "main": "dist.es5/n.js"
+, "ignore":
+  [ ".gitignore"
+  , ".editorconfig"
+  , ".travis.yml"
+  , "gulpfile.js"
+  , "package.json"
+  , "source"
+  , "test"
+  ]
+
+, "dependencies":
+  { "mithril": "0.1.x"
+  }
+
 , "authors":
   [ { "name": "Tomek Wiszniewski"
     , "email": "t.wiszniewski@gmail.com"
@@ -15,16 +30,5 @@
 , "repository":
   { "type": "git"
   , "url": "https://github.com/tomekwi/mithril-n.git"
-  }
-
-, "main": "dist.es5/n.js"
-, "ignore":
-  [ ".gitignore"
-  , ".jshintrc"
-  , ".editorconfig"
-  ]
-
-, "dependencies":
-  { "mithril": "0.1.x"
   }
 }
