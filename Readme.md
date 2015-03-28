@@ -90,6 +90,8 @@ License
 
 [MIT][] © [Tomek Wiszniewski][]
 
+   
+   
 [![js-standard-style][standard-badge]][standard]
 
 [MIT]: ./License.md
