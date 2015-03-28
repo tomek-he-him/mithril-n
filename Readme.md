@@ -88,7 +88,11 @@ Many thanks to this fine gentleman for his invaluable input:
 License
 -------
 
-[MIT][] © [Tomek Wiszniewski][].
+[MIT][] © [Tomek Wiszniewski][]
+
+[![js-standard-style][standard-badge]][standard]
 
 [MIT]: ./License.md
 [Tomek Wiszniewski]: https://github.com/tomekwi
+[standard-badge]: https://raw.githubusercontent.com/feross/standard/master/badge.png
+[standard]: https://github.com/feross/standard
