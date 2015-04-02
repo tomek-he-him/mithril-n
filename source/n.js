@@ -3,14 +3,14 @@ import m from 'mithril';
 export default function n () {
 
   // First, let Mithril process our arguments and generate a `view`.
-  var view = m.apply(null, arguments);
-  var config = view.attrs.config;
+  let view = m.apply(null, arguments);
+  let config = view.attrs.config;
 
   // Divide `view.children` nodes between DOM and vDOM. Save all as a flat array
   // in `kids`.
-  var kids = [];
-  var dom = [];
-  var vdom = [];
+  let kids = [];
+  let dom = [];
+  let vdom = [];
   view.children.forEach(function recurse (kid) {
 
     // - push the child where it belongs, if it's not an array

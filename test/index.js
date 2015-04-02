@@ -6,18 +6,18 @@ import m from 'mithril';
 import n from '../source/n';
 
 // Prepare a DOM container for tests
-var testContainer = document.createElement('div');
+let testContainer = document.createElement('div');
 document.body.appendChild(testContainer);
 
 function flush (target) {
-  var childNode;
+  let childNode;
   while ((childNode = target.lastChild)) {
     target.removeChild(childNode);
   }
 }
 
 test('Does the same as Mithril', (is) => {
-  var noop = () => {};
+  let noop = () => {};
 
   is.deepEqual(
     m('div', {an: 'attribute', onclick: noop}),
@@ -58,11 +58,11 @@ test('Does the same as Mithril', (is) => {
 });
 
 test('Renders a child node', (is) => {
-  var grandpa;
-  var [pa, daughter, son] = (new Array(3)).fill(null).map(
+  let grandpa;
+  let [pa, daughter, son] = (new Array(3)).fill(null).map(
     () => document.createElement('div')
   );
-  var baby = document.createTextNode('balbablaba ballablabla ba blbbla');
+  let baby = document.createTextNode('balbablaba ballablabla ba blbbla');
   pa.setAttribute('some-attr', 'some value');
   pa.appendChild(son);
   pa.appendChild(daughter);
@@ -107,8 +107,8 @@ test('Renders a child node', (is) => {
 });
 
 test('Renders a bunch of child nodes', (is) => {
-  var aunt, grandpa;
-  var [ma, pa, uncle] = (new Array(3)).fill(null).map(
+  let aunt, grandpa;
+  let [ma, pa, uncle] = (new Array(3)).fill(null).map(
     () => document.createElement('div')
   );
 
@@ -152,7 +152,7 @@ test('Renders a bunch of child nodes', (is) => {
     'in the correct order'
   );
 
-  var [oldUncle, oldAunt, oldPa] = [uncle, aunt, pa];
+  let [oldUncle, oldAunt, oldPa] = [uncle, aunt, pa];
   m.render(testContainer,
     n('.other-grandpa',
       {key: 'other-grandpa'},
@@ -211,13 +211,13 @@ test('Renders a bunch of child nodes', (is) => {
 });
 
 test('Accepts different types of syntax', (is) => {
-  var otherSon;
-  var [daughter, otherDaughter, son, baby] = (new Array(4)).fill(null).map(
+  let otherSon;
+  let [daughter, otherDaughter, son, baby] = (new Array(4)).fill(null).map(
     () => document.createElement('div')
   );
 
-  var vOtherSon = m('.other-son', {config: (element) => {otherSon = element;}});
-  var children = [
+  let vOtherSon = m('.other-son', {config: (element) => {otherSon = element;}});
+  let children = [
     baby,
     [daughter, [otherDaughter]],
     [vOtherSon, son]
