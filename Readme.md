@@ -44,13 +44,13 @@ So this JavaScript[*](#es6-note):
 import m from "mithril";
 import n from "mithril-n";
 
-m.render(document.body
-  , n("home"
-    , document.createElement("papa")
-    , n("mama", m(".son"))
-    , "A happy family"
-    )
-  );
+m.render(document.body,
+  n("home",
+    document.createElement("papa"),
+    n("mama", m(".son")),
+    "A happy family"
+  )
+);
 ```
 
 …will result in:
