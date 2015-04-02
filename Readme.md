@@ -1,6 +1,7 @@
- [![Travis](https://img.shields.io/travis/tomekwi/mithril-n.svg?style=flat-square)](https://travis-ci.org/tomekwi/mithril-n)
+[![Travis – build status](https://img.shields.io/travis/tomekwi/mithril-n.svg?style=flat-square)](https://travis-ci.org/tomekwi/mithril-n)
  [![Code climate](https://img.shields.io/codeclimate/github/tomekwi/mithril-n.svg?style=flat-square)](https://codeclimate.com/github/tomekwi/mithril-n)
- [![David](https://img.shields.io/david/tomekwi/mithril-n.svg?style=flat-square)](https://david-dm.org/tomekwi/mithril-n)
+ [![David – status of dependencies](https://img.shields.io/david/tomekwi/mithril-n.svg?style=flat-square)](https://david-dm.org/tomekwi/mithril-n)
+ [![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
 
 
 
