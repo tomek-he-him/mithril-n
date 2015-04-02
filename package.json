@@ -9,7 +9,7 @@
 
 , "scripts":
   { "prepublish": "gulp build"
-  , "test": "standard source/**.js && browserify test/index.js --transform 6to5ify | tape-run --browser=phantom | tap-spec"
+  , "test": "jshint *.js source/*.js test/*.js && jscs *.js source/*.js test/*.js && browserify test/index.js --transform 6to5ify | tape-run --browser=phantom | tap-spec"
   , "test-debug": "echo 'Now navigate your browser to http://localhost:8001/ to run the tests – and see their results in the console.' && browserify test/index.js --debug --transform 6to5ify | tape-run --port=8001"
   }
 
@@ -20,7 +20,8 @@
   , "tape-catch": "1.0.4"
   , "6to5": "3.3.7"
   , "tap-spec": "2.2.0"
-  , "standard": "3.3.0"
+  , "jshint": "2.6.3"
+  , "jscs": "1.12.0"
 
   , "6-to-library": "0.3.3"
   , "gulp": "3.8.10"
