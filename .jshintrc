@@ -1,5 +1,12 @@
 {
   /*
+   * ES6 additions
+   * =================
+   */
+
+  "esnext": true,
+
+  /*
    * ENVIRONMENTS
    * =================
    */
@@ -41,7 +48,7 @@
   "quotmark": "single",
 
   // Enforce placing 'use strict' at the top function scope
-  "strict": true,
+  // "strict": true,
 
   // Prohibit use of explicitly undeclared variables.
   "undef": true,
