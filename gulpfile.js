@@ -3,7 +3,7 @@
 // Imports
 // -------------------------------------------------------------------------------------------------
 var gulp = require('gulp-help')(require('gulp'));
-var to5 = require('gulp-6to5');
+var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 
@@ -35,7 +35,7 @@ gulp.task('scripts:es6', false, function() {
 gulp.task('scripts:es5', false, function() {
   return gulp
     .src(scripts.source)
-    .pipe(to5({modules: '6-to-library'}))
+    .pipe(babel({modules: 'umd'}))
     .pipe(gulp.dest('dist.es5'))
     .pipe(uglify())
     .pipe(rename({extname: '.min.js'}))

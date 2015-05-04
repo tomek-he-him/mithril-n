@@ -1,4 +1,4 @@
-import '6to5/polyfill';
+import 'babel/polyfill';
 
 import test from 'tape-catch';
 
