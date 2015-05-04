@@ -4,7 +4,7 @@
 , "license": "MIT"
 
 , "dependencies":
-  { "mithril": "0.1.x"
+  { "mithril": ">=0.1.0 <0.3.0"
   }
 
 , "scripts":
